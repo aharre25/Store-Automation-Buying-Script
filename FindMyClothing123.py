@@ -14,16 +14,22 @@ from selenium import webdriver
 
 
 class Bot:
+
+    # Chrome webdriver is initialized and the window is maximized
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
 
+
     def findform(self):
+
+        # Script directs user to clothing website
 
         self.driver.get('http://automationpractice.com/index.php')
         search = self.driver.find_element_by_xpath('//*[@id="search_query_top"]')
         search.send_keys('Hat')
 
+        # The script goes through the buying process
         searchButton = self.driver.find_element_by_xpath('//*[@id="searchbox"]/button')
         searchButton.click()
 
@@ -33,6 +39,7 @@ class Bot:
         addToCart = self.driver.find_element_by_xpath('//*[@id="add_to_cart"]/button')
         addToCart.click()
 
+        # A wait has to be done for checkout button to be displayed on the screen
         self.driver.implicitly_wait(8)
         pToCheckout = self.driver.find_element_by_xpath('//*[@id="layer_cart"]/div[1]/div[2]/div[4]/a')
         pToCheckout.click()
@@ -43,7 +50,7 @@ class Bot:
         s2 = self.driver.find_element_by_xpath('//*[@id="email"]')
         s2.send_keys("gclotet@aol.com")
 
-        s3= self.driver.find_element_by_xpath('//*[@id="passwd"]')
+        s3 = self.driver.find_element_by_xpath('//*[@id="passwd"]')
         s3.send_keys('Nabeel123')
 
         s4 = self.driver.find_element_by_xpath('//*[@id="SubmitLogin"]')
